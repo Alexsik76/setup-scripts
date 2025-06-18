@@ -6,4 +6,5 @@ Simple script for initial server configuration
 Він інтерактивно дозволяє вибрати папку та файл для завантаження.
 
 GITHUB_USERNAME="Alexsik76" - ім'я користувача на GitHub
+
 GITHUB_REPO="configs"       - назва приватного репозиторію з конфігураціями
