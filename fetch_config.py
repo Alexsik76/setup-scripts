@@ -1,15 +1,13 @@
+#!/usr/bin/python3
+
 import os
 import sys
 import json
 import urllib.request
 import urllib.error
-import getpass # Для безпечного введення токена
+import getpass
 
-# Цей скрипт призначений для безпечного завантаження конфігураційних файлів
-# з конкретного приватного GitHub репозиторію.
-# Він інтерактивно дозволяє вибрати папку та файл для завантаження.
 
-# --- Налаштування репозиторію (можна змінити ці значення за потреби) ---
 GITHUB_USERNAME = "Alexsik76" # Ваше ім'я користувача на GitHub
 GITHUB_REPO = "configs"     # Назва вашого приватного репозиторію з конфігураціями
 
@@ -32,10 +30,6 @@ except Exception as e:
 if not GITHUB_TOKEN:
     error_exit("PAT не може бути порожнім.")
 
-# --- Допоміжна функція для виконання запитів до GitHub API ---
-# Аргументи: api_path = Шлях API-кінцевої точки (наприклад, 'contents/')
-#            accept_header = Заголовок Accept для запиту
-# Повертає: JSON-об'єкт або вміст файлу у байтах
 def github_api_request(api_path, accept_header="application/vnd.github.v3+json"):
     full_url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{GITHUB_REPO}/{api_path}"
     
@@ -55,11 +49,11 @@ def github_api_request(api_path, accept_header="application/vnd.github.v3+json")
     except urllib.error.HTTPError as e:
         error_message = f"HTTP Помилка при запиті до {full_url}: {e.code} {e.reason}"
         try:
-            # Спроба прочитати тіло відповіді для детальнішої помилки
+
             error_body = e.read().decode('utf-8')
             error_message += f"\nТіло відповіді: {error_body}"
         except:
-            pass # Неможливо прочитати тіло помилки
+            pass 
         error_exit(error_message)
     except urllib.error.URLError as e:
         error_exit(f"Помилка URL при запиті до {full_url}: {e.reason}")
