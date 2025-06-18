@@ -23,7 +23,7 @@ print(f"Репозиторій: {GITHUB_USERNAME}/{GITHUB_REPO}")
 print("Будь ласка, введіть ваш GitHub Personal Access Token (PAT):")
 try:
     # getpass.getpass() приховує введення і не зберігає його в історії
-    GITHUB_TOKEN = getpass.getpass("") 
+    GITHUB_TOKEN = getpass.getpass(prompt='Token: ') 
 except Exception as e:
     error_exit(f"Не вдалося прочитати PAT: {e}")
 
